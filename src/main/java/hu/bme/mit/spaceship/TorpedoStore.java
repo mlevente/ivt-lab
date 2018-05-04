@@ -19,9 +19,9 @@ public class TorpedoStore {
     String failureEnv = System.getenv("IVT_RATE");
     if (failureEnv != null){
       try {
-        FAILURE_RATE = Double.parseDouble(failureEnv);
+        failure_rate = Double.parseDouble(failureEnv);
       } catch (NumberFormatException nfe) {
-        FAILURE_RATE = 0.0;
+        failure_rate = 0.0;
       }
     }
   }
@@ -36,7 +36,7 @@ public class TorpedoStore {
     // simulate random overheating of the launcher bay which prevents firing
     double r = generator.nextDouble();
 
-    if (r >= FAILURE_RATE) {
+    if (r >= failure_rate) {
       // successful firing
       this.torpedoCount -= numberOfTorpedos;
       success = true;
