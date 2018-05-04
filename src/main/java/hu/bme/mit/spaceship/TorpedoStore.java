@@ -7,7 +7,7 @@ import java.util.Random;
 */
 public class TorpedoStore {
 
-  private double failure_rate = 0.0;
+  private double failureRate = 0.0;
 
   private int torpedoCount = 0;
   private Random generator = new Random();
@@ -19,9 +19,9 @@ public class TorpedoStore {
     String failureEnv = System.getenv("IVT_RATE");
     if (failureEnv != null){
       try {
-        failure_rate = Double.parseDouble(failureEnv);
+        failureRate = Double.parseDouble(failureEnv);
       } catch (NumberFormatException nfe) {
-        failure_rate = 0.0;
+        failureRate = 0.0;
       }
     }
   }
@@ -36,7 +36,7 @@ public class TorpedoStore {
     // simulate random overheating of the launcher bay which prevents firing
     double r = generator.nextDouble();
 
-    if (r >= failure_rate) {
+    if (r >= failureRate) {
       // successful firing
       this.torpedoCount -= numberOfTorpedos;
       success = true;
